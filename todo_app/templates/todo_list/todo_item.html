@@ -1,0 +1,40 @@
+{% extends 'todo_list/base.html' %}
+{% block content %} 
+      <h2> My todoitems </h2>
+      <br/>
+      
+        {% for item in todo_item %}
+       
+        <div class="card">
+          <div class="card-header">
+            {{ item }}
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">Todo_list: {{ item.todo_list }}</h5>
+            <p class="card-text">
+              <ul>
+        <li>Title: {{ item.title }}</li>
+        
+        <li>Description: {{ item.description }}</li>
+        <li>Quantity: {{ item.quantity }}</li>
+        <li>Due_date: {{ item.due_date }}</li>
+        
+          
+          </ul>
+        
+        
+        
+            </p>
+          </div>
+          {% if user.is_authenticated %}
+          <div class="card-footer text-muted">
+            <a href="{% url 'update-todo_item' item.id %}" class="btn btn-outline secondary btn-sm">update Item></a>
+            <a href="{% url 'delete-todo_item' item.id %}" class="btn btn-outline secondary btn-sm">delete Item></a>
+          </div>
+          {% endif %}
+        </body>
+        {% endfor %}  
+        
+        
+        
+{% endblock %} 

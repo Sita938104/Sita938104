@@ -1,0 +1,28 @@
+{% extends 'todo_list/base.html' %}
+{% block content %} 
+{% if user.is_authenticated %}
+  <h1> Add Todo_item</h1>
+  <br/><br/>
+  <style>
+	 body{background:linear-gradient(to bottom, #33ccff 0%, #ff99cc 100%);
+             background-repeat: no-repeat;background-size: 5200px 900px}
+  </style>
+  <centre>
+	{% if submitted %}
+		Your Todo_item Was Submitted Succefully!!!
+	{% else %}
+	<form action="" method=POST enctype="multipart/form-data">
+		{% csrf_token %}
+
+		{{ form.as_p }}
+
+		<input type="submit" value="Submit" class="btn btn-secondary">
+
+	</form>
+	{% endif %}
+{% else %}
+<h1>Sorry! You must be logged in to view this page...</h1>
+<a class="nav-link" href="{% url 'login' %}">Login</a>
+  </centre>
+  {% endif %}
+{% endblock %}

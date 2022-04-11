@@ -1,0 +1,33 @@
+{% extends 'todo_list/base.html' %}
+
+{% block content %}
+
+
+<center>
+
+{% if user.is_authenticated %}
+<h1> Hello User </h1>
+{{ time }}<br/>
+{{ cal|safe }}<br></br>
+<h3>Things to do in this month</h3>
+{% if Todo_list %}
+    {% for event in Todo_list %}
+    
+   <h5><li>{{ event.todo_list }}-{{ event.due_date }}</li></h5>
+   {% endfor %} 
+
+{% else %} 
+      <h5> There were no things todo for u in this month...</h5>
+    {% endif %}
+{% else %}
+<br/></br></br>
+</br></br>
+<h2>Hello user! </h2>
+<h2>Easy to use To-Do list.Remember everything and get things done</h2> 
+<h2>You must login to experience this website </h2>
+<a class="nav-link" href="{% url 'register_user' %}">Register</a>
+<h2>If you have already registered please login with given link below</h2>
+<a class="nav-link" href="{% url 'login' %}">Login</a>
+</center>
+{% endif %}
+{% endblock %}
